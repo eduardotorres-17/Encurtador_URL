@@ -3,26 +3,22 @@ import Link from "./model.js";
 
 export default async function handler(req, res) {
   await connectToDatabase();
+  const code = req.query.code;
 
-  let code = req.query?.code;
+  console.log("👉 Iniciando redirecionamento na Nuvem...");
+  console.log("👉 Código extraído pela Vercel:", code);
 
-  if (!code || code === "") {
-    if (req.url.includes("?code=")) {
-      code = req.url.split("?code=")[1].split("&")[0];
-    } else {
-      const pathCode = req.url.split("?")[0].replace("/", "");
-      if (pathCode !== "api/redirect") {
-        code = pathCode;
-      }
-    }
-  }
-
-  if (!code || code === "") {
+  if (!code) {
     return res.redirect("/?erro=codigo-vazio");
   }
 
   try {
     const linkEncontrado = await Link.findOne({ code: code });
+
+    console.log(
+      "📦 Achou no Banco de Dados?",
+      linkEncontrado ? "SIM!" : "NÃO!",
+    );
 
     if (linkEncontrado) {
       linkEncontrado.clicks += 1;

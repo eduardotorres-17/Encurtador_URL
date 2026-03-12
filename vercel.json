@@ -2,7 +2,7 @@
   "rewrites": [
     {
       "source": "/:code([a-zA-Z0-9_-]{6})",
-      "destination": "/api/redirect?code=$code"
+      "destination": "/api/redirect"
     }
   ]
 }
