@@ -7,12 +7,15 @@ export default async function handler(req, res) {
   let code = req.query?.code;
 
   if (!code || code === "") {
-
-    code = req.url.split("?")[0].replace("/", "");
+    if (req.url.includes("?code=")) {
+      code = req.url.split("?code=")[1].split("&")[0];
+    } else {
+      const pathCode = req.url.split("?")[0].replace("/", "");
+      if (pathCode !== "api/redirect") {
+        code = pathCode;
+      }
+    }
   }
-
-  console.log("👉 URL completa que chegou:", req.url);
-  console.log("🎯 Código extraído com sucesso:", code);
 
   if (!code || code === "") {
     return res.redirect("/?erro=codigo-vazio");
@@ -21,13 +24,10 @@ export default async function handler(req, res) {
   try {
     const linkEncontrado = await Link.findOne({ code: code });
 
-    console.log("📦 Banco encontrou o link?", linkEncontrado ? "SIM!" : "NÃO");
-
     if (linkEncontrado) {
       linkEncontrado.clicks += 1;
       await linkEncontrado.save();
 
-      console.log(`🚀 Teleportando para: ${linkEncontrado.originalUrl}`);
       return res.redirect(linkEncontrado.originalUrl);
     } else {
       return res.redirect("/?erro=nao-encontrado");
