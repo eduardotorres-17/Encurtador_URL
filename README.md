@@ -85,6 +85,3 @@ Eduardo
 Portfólio: https://portfolio-eduardo-torres.vercel.app/
 
 Email: eduardobtorres17@gmail.com
-
-- **Portfólio:** [https://portfolio-eduardo-torres.vercel.app/](https://portfolio-eduardo-torres.vercel.app/)
-- **Email:** eduardobtorres17@gmail.com
