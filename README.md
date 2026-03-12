@@ -46,7 +46,7 @@ Pré-requisitos: Node.js, Git e uma conta no MongoDB Atlas.
 
 1. Clone este repositório (lembre-se de alterar o link para o seu repositório oficial):
 ```bash
-git clone [https://github.com/SEU_USUARIO_GITHUB/encurtador-url.git](https://github.com/SEU_USUARIO_GITHUB/encurtador-url.git)
+git clone [https://github.com/eduardotorres-17/encurtador-url.git](https://github.com/SEU_USUARIO_GITHUB/encurtador-url.git)
 ```
 
 2. Acesse a pasta do projeto:
